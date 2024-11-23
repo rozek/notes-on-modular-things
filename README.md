@@ -138,7 +138,7 @@ After completing these files, you should copy them into your thing's directory w
 
 #### _things.json ####
 
-`_things.json` is the filw where you tell the server your thing's name and where to find all files that make up that thing.
+`_things.json` is the file where you tell the server your thing's name and where to find all files that make up that thing.
 
 Insert the following lines to that file (usually at the second line):
 
