@@ -155,15 +155,15 @@ Thanks to the design of "modular things", it turns out to be pretty simple to de
 
 (t.b.w)
 
-#### Servo Out ####
+#### RC Servo Control ####
 
 (t.b.w)
 
-#### Continuous Rotation Servo Out ####
+#### Continuous Rotation RC Servo Control ####
 
 (t.b.w)
 
-#### NeoPixel (WS2812) Out ####
+#### NeoPixel (WS2812) Control ####
 
 (t.b.w)
 
