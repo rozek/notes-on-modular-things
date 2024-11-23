@@ -30,7 +30,7 @@ In this work, the base of every module is a breakout board for the [Raspberry Pi
 
 ## Installation and Usage ##
 
-Let's say, you have a chosen a "thing" that you plan to build - or you want to develop a new one. Assuming, that this thing is called "xxx" (the name should qualify as a valid Javascript identifier), then you will find below the instructions for installation and use of that thing (skip whatever does not seem applicable and change `xxx` to the actual name of your thing):
+Let's say, you have chosen a "thing" that you plan to build - or you want to develop a new one. Assuming, that this thing is called "xxx" (the name should qualify as a valid Javascript identifier), then you will find below the instructions for installation and use of that thing (skip whatever does not seem applicable and change `xxx` to the actual name of your thing):
 
 #### Firmware Preparation ####
 
