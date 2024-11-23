@@ -26,7 +26,7 @@ The "**firmware**" of a thing is an Arduino sketch which implements a thing's fu
 
 ## Hardware ##
 
-In this work, the base of every module is a breakout board for the Raspberry Pico 2040 microcontroller - usually a Waveshare RP2040 Zero (because that seems to be the cheapest one - at least, here in Germany). However, many other modules may be used as well - sometimes after slightly modifying the Arduino sketch that is required for the "firmware" of a "thing"
+In this work, the base of every module is a breakout board for the Raspberry Pico 2040 microcontroller - usually a [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) (because that seems to be the cheapest one - at least, here in Germany). However, many other modules (e.g., the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040)) may be used as well - sometimes after slightly modifying the Arduino sketch that is required for the "firmware" of a "thing"
 
 
 
