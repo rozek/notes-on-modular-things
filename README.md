@@ -93,10 +93,8 @@ Let's say, you have chosen a "thing" that you plan to build - or you want to dev
   },
 ```
 4. Insert the following lines into file `./index.ts`
-  * `import xxx from "./xxx/software/xxx";`<br>
-    e.g., as the last import statement
-  * `xxx,`<br>
-    e.g., as the last line in the `export default {` block
+  * `import xxx from "./xxx/software/xxx";`<br>e.g., as the last import statement
+  * `xxx,`<br>e.g., as the last line in the `export default {` block
 5. (Re)start the server<br>
     `npm run dev`
 
