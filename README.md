@@ -231,9 +231,41 @@ export default class xxx extends Thing {  <<<< don't forget to insert your thing
 
 The following sections contain code for various functionalities that can be inserted into the templates shown above. In many cases, multiple functionalites can be combined into a single "thing", if you adjust the configured interface pins according to the capabilities of your RP2040 board.
 
-![Waveshare RP2040-Zero Pinout](RP2040-Zero-Pinout.jpg)
-
 #### Built-in RGB LEDs ####
+
+Both the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040) and the [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) have an RGB LED built-in. As it is always present, there is no reason why it should not be made accessible - e.g., it could be used to indicate successful operation or any errors that occurred.
+
+Here are the building blocks for the Pimoroni board:
+
+* xxx.ino functions and definitions
+```c++
+#define PIN_LED_R 18
+#define PIN_LED_G 19
+#define PIN_LED_B 20
+
+/**** RGB Control (RGB LED on Tiny2040 is "active low"!) ****/
+
+  void _setRGB (uint8_t* Data, size_t Length) {
+    analogWrite(PIN_LED_R, 65535-(Length < 2 ? 0 : Data[0] + Data[1]*255));
+    analogWrite(PIN_LED_G, 65535-(Length < 4 ? 0 : Data[2] + Data[3]*255));
+    analogWrite(PIN_LED_B, 65535-(Length < 6 ? 0 : Data[4] + Data[5]*255));
+  }
+  OSAP_Port_Named setRGB("setRGB",_setRGB);
+```
+* xxx.ino setup
+```c++
+    analogWriteResolution(16);             // according to RP2040 specifications
+
+    pinMode(PIN_LED_R,OUTPUT);
+    pinMode(PIN_LED_G,OUTPUT);
+    pinMode(PIN_LED_B,OUTPUT);
+
+    analogWrite(PIN_LED_R,65535);              // initially switches the LED off
+    analogWrite(PIN_LED_G,65535);                                        // dto.
+    analogWrite(PIN_LED_B,65535);                                        // dto.
+```
+
+And here are the building blocks for the Waveshare board:
 
 (t.b.w)
 
