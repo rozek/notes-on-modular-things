@@ -235,7 +235,7 @@ The following sections contain code for various functionalities that can be inse
 
 Both the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040) and the [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) have an RGB LED built-in. As it is always present, there is no reason why it should not be made accessible - e.g., it could be used to indicate successful operation or any errors that occurred.
 
-Here are the building blocks for the Pimoroni board:
+Here are the **building blocks for the Pimoroni board**:
 
 * xxx.ino functions and definitions
 ```c++
@@ -265,9 +265,36 @@ Here are the building blocks for the Pimoroni board:
     analogWrite(PIN_LED_B,65535);                                        // dto.
 ```
 
-And here are the building blocks for the Waveshare board:
+And here are the **building blocks for the Waveshare board**:
 
-(t.b.w)
+* xxx.ino functions and definitions
+```c++
+#include <Adafruit_NeoPixel.h>
+```
+* xxx.ino functions and definitions
+```c++
+#define builtin_LED_Pin 16
+
+/**** RGB Control ****/
+
+  Adafruit_NeoPixel builtin_LED(1, builtin_LED_Pin, NEO_GRB + NEO_KHZ800);
+
+  void _setRGB (uint8_t* Data, size_t Length) {
+    int R = (Length < 2 ? 0 : Data[1]);
+    int G = (Length < 4 ? 0 : Data[3]);
+    int B = (Length < 6 ? 0 : Data[5]);
+
+    builtin_LED.setPixelColor(0,builtin_LED.Color(R,G,B));
+    builtin_LED.show();
+  }
+  OSAP_Port_Named setRGB("setRGB",_setRGB);
+```
+* xxx.ino setup
+```c++
+    builtin_LED.begin();
+    builtin_LED.setPixelColor(0,builtin_LED.Color(0,16,0));
+    builtin_LED.show();
+```
 
 #### Digital In ####
 
