@@ -109,9 +109,37 @@ Let's say, you have a chosen a "thing" that you plan to build - or you want to d
 
 You should now be able to access your thing using JavaScript from within the IDE.
 
+## How to develop your own "Thing" ##
 
+Thanks to the nature of things, it turns out to be pretty simple to develop custom "things" - you do not even have to know Arduino and its C dialect. In many case it is sufficient to use the templates shown below and fill in the "Building Blocks" for the desired functionality - that's it. The hardware may then be built using a breadboard.
 
+### Templates ###
 
+#### _things.json ####
+
+#### index.ts ####
+
+#### xxx.ino ####
+
+#### xxx.ts ####
+
+## Building Blocks ##
+
+#### Built-in RGB LEDs ####
+
+#### Digital In ####
+
+#### Digital Out ####
+
+#### Analog In ####
+
+#### Analog Out ####
+
+#### Servo Out ####
+
+#### Continuous Rotation Servo Out ####
+
+#### NeoPixel (WS2812) Out ####
 
 ## License ##
 
