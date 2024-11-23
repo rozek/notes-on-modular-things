@@ -115,7 +115,23 @@ Thanks to the design of "modular things", it turns out to be pretty simple to de
 
 ### Templates ###
 
-(t.b.w)
+The following sections contain templates for the most important files that make up a "thing" - with placeholders where you should fill in the actual code for the functionalities you need. That code may either be found further below (in chapter "Building Blocks") or you will have to develop it yourself.
+
+After completing these files, you should copy them into your thing's directory within your server's `./things` folder (as already described above):
+
+```
+./things/xxx/
+  circuit/
+    images/
+      layout.png
+      schematic.png
+      preview.png
+  firmware/
+    xxx/
+      xxx.ino
+  software/
+    xxx.ts
+```
 
 #### _things.json ####
 
