@@ -167,6 +167,10 @@ Thanks to the design of "modular things", it turns out to be pretty simple to de
 
 (t.b.w)
 
+## Application Examples ##
+
+(t.b.w)
+
 ## License ##
 
 [MIT License](LICENSE.md)
