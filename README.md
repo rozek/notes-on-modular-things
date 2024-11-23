@@ -171,12 +171,41 @@ Insert the following lines to that file (usually at the second line):
 
 You will have to apply two changes:
 
-1. add line `import xxx from "./xxx/software/xxx";`<br>e.g., as the last import statement
-2. add line `xxx,`<br>e.g., as the last line in the `export default {` block
+1. add line `import xxx from "./xxx/software/xxx";` e.g., as the last import statement
+2. add line `xxx,` e.g., as the last line in the `export default {` block
 
 #### xxx.ino ####
 
-(t.b.w)
+`xxx.ino` is an arduino "sketch" implementing the communication between the RP2040 and your PC over USB and the actual functionality of your "thing"
+
+Use the following template as a basis for your development:
+
+```c++
+#include <osap.h>
+<<<< add more includes here, if necessary
+
+  OSAP_Runtime osap;
+  OSAP_Gateway_USBSerial serLink(&Serial);
+  OSAP_Port_DeviceNames namePort("xxx");
+
+<<<< add any required definitions and functions for your thing
+
+/**** Startup ****/
+
+  void setup() {
+    osap.begin();
+
+<<<< add any required initialization code here
+  }
+
+/**** Operation ****/
+
+  void loop() {
+    osap.loop();
+
+<<<< add any required operation code here
+  }
+```
 
 #### xxx.ts ####
 
