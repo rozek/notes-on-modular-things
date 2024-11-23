@@ -229,7 +229,9 @@ export default class xxx extends Thing {  <<<< don't forget to insert your thing
 
 ## Building Blocks ##
 
-(t.b.w)
+The following sections contain code for various functionalities that can be inserted into the templates shown above. In many cases, multiple functionalites can be combined into a single "thing", if you adjust the configured interface pins according to the capabilities of your RP2040 board.
+
+![Waveshare RP2040-Zero Pinout](RP2040-Zero-Pinout.jpg)
 
 #### Built-in RGB LEDs ####
 
