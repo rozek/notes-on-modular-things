@@ -235,7 +235,7 @@ The following sections contain code for various functionalities that can be inse
 
 Both the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040) and the [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) have an RGB LED built-in. As it is always present, there is no reason why it should not be made accessible - e.g., it could be used to indicate successful operation or any errors that occurred.
 
-Here are the **building blocks for the Pimoroni board**:
+Here are the **building blocks for the Pimoroni board firmware** (the "software" part is board-independent):
 
 * xxx.ino functions and definitions
 ```c++
@@ -265,7 +265,7 @@ Here are the **building blocks for the Pimoroni board**:
     analogWrite(PIN_LED_B,65535);                                        // dto.
 ```
 
-And here are the **building blocks for the Waveshare board**:
+And here are the **building blocks for the Waveshare board firmware** (the "software" part is board-independent):
 
 * xxx.ino functions and definitions
 ```c++
@@ -296,6 +296,31 @@ And here are the **building blocks for the Waveshare board**:
     builtin_LED.show();
 ```
 > Nota bene: some Waveshare boards seem to have a WS2812 RGB LED with byte order `NEO_RGB`. If you think that your on-board LED shows the wrong colors, you may try to replace the byte order `NEO_GRB` shown above with `NEO_RGB`
+
+Here is the **board-independent software part**:
+
+* xxx.ts methods
+```typescript
+  async setRGB (R:number, G:number, B:number):Promise<void> {
+    const Datagram = new Uint8Array([
+      255 * Math.max(0,Math.min(R,1)),
+      255 * Math.max(0,Math.min(G,1)),
+      255 * Math.max(0,Math.min(B,1)),
+    ])
+    await this.send('setRGB',Datagram)
+  }
+```
+* xxx.ts API documentation
+```typescript
+  {
+    name: 'setRGB',
+    args: [
+      'R: 0 to 1',
+      'G: 0 to 1',
+      'B: 0 to 1'
+    ]
+  },
+```
 
 ### Digital In ###
 
