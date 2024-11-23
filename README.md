@@ -231,7 +231,7 @@ export default class xxx extends Thing {  <<<< don't forget to insert your thing
 
 The following sections contain code for various functionalities that can be inserted into the templates shown above. In many cases, multiple functionalites can be combined into a single "thing", if you adjust the configured interface pins according to the capabilities of your RP2040 board.
 
-#### Built-in RGB LEDs ####
+### Built-in RGB LEDs ###
 
 Both the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040) and the [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) have an RGB LED built-in. As it is always present, there is no reason why it should not be made accessible - e.g., it could be used to indicate successful operation or any errors that occurred.
 
@@ -297,31 +297,31 @@ And here are the **building blocks for the Waveshare board**:
 ```
 > Nota bene: some Waveshare boards seem to have a WS2812 RGB LED with byte order `NEO_RGB`. If you think that your on-board LED shows the wrong colors, you may try to replace the byte order `NEO_GRB` shown above with `NEO_RGB`
 
-#### Digital In ####
+### Digital In ###
 
 (t.b.w)
 
-#### Digital Out ####
+### Digital Out ###
 
 (t.b.w)
 
-#### Analog In ####
+### Analog In ###
 
 (t.b.w)
 
-#### Analog Out ####
+### Analog Out ###
 
 (t.b.w)
 
-#### RC Servo Control ####
+### RC Servo Control ###
 
 (t.b.w)
 
-#### Continuous Rotation RC Servo Control ####
+### Continuous Rotation RC Servo Control ###
 
 (t.b.w)
 
-#### NeoPixel (WS2812) Control ####
+### NeoPixel (WS2812) Control ###
 
 (t.b.w)
 
