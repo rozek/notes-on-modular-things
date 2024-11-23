@@ -322,19 +322,19 @@ Here is the **board-independent software part**:
   },
 ```
 
-### Digital In ###
+### Digital Inputs ###
 
 (t.b.w)
 
-### Digital Out ###
+### Digital Outputs ###
 
 (t.b.w)
 
-### Analog In ###
+### Analog Inputs ###
 
 (t.b.w)
 
-### Analog Out ###
+### Analog Outputs ###
 
 (t.b.w)
 
