@@ -186,7 +186,7 @@ Use the following template as a basis for your development:
 
   OSAP_Runtime osap;
   OSAP_Gateway_USBSerial serLink(&Serial);
-  OSAP_Port_DeviceNames namePort("xxx");
+  OSAP_Port_DeviceNames namePort("xxx");  <<<< don't forget to insert your thing's name here
 
 <<<< add any required definitions and functions for your thing
 
@@ -209,7 +209,23 @@ Use the following template as a basis for your development:
 
 #### xxx.ts ####
 
-(t.b.w)
+`xxx.ts` (or `xxx.js`) implements the JavaScript interface of your thing. 
+
+Use the following template as a basis for your development:
+
+```typescript
+import Thing from "../../../src/lib/thing"
+
+export default class xxx extends Thing {  <<<< don't forget to insert your thing's name here
+<<<< add any required methods here
+
+/**** API Specification ****/
+
+  public api = [
+<<<< add the interface documentation here
+  ]
+}
+```
 
 ## Building Blocks ##
 
