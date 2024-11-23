@@ -120,26 +120,59 @@ The following sections contain templates for the most important files that make 
 After completing these files, you should copy them into your thing's directory within your server's `./things` folder (as already described above):
 
 ```
-./things/xxx/
-  circuit/
-    images/
-      layout.png
-      schematic.png
-      preview.png
-  firmware/
-    xxx/
-      xxx.ino
-  software/
-    xxx.ts
+./things/
+  _things.json
+  index.ts
+  xxx/
+    circuit/
+      images/
+        layout.png
+        schematic.png
+        preview.png
+    firmware/
+      xxx/
+        xxx.ino
+    software/
+      xxx.ts
 ```
 
 #### _things.json ####
 
-(t.b.w)
+`_things.json` is the filw where you tell the server your thing's name and where to find all files that make up that thing.
+
+Insert the following lines to that file (usually at the second line):
+
+```json
+  {
+    "author":  "your name",
+    "name":    "xxx",
+    "software":"software/xxx.ts",
+    "firmware":"firmware/xxx/xxx.ino",
+    "images": [
+      {
+        "name": "layout",
+        "src": "circuit/images/layout.png"
+      },
+      {
+        "name": "schematic",
+        "src": "circuit/images/schematic.png"
+      },
+      {
+        "name": "preview",
+        "src": "circuit/images/preview.png"
+      }
+    ]
+  },
+```
 
 #### index.ts ####
 
-(t.b.w)
+`index.ts` is used by the web IDE to load your thing's JavaScript interface.
+
+You will have to apply two changes:
+
+1. add line `import xxx from "./xxx/software/xxx";`<br>e.g., as the last import statement
+2. add line `xxx,`<br>e.g., as the last line in the `export default {` block
 
 #### xxx.ino ####
 
