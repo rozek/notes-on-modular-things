@@ -295,6 +295,7 @@ And here are the **building blocks for the Waveshare board**:
     builtin_LED.setPixelColor(0,builtin_LED.Color(0,16,0));
     builtin_LED.show();
 ```
+> Nota bene: some Waveshare boards seem to have a WS2812 RGB LED with byte order `NEO_RGB`. If you think that your on-board LED shows the wrong colors, you may to repalce the usual byte order `NEO_GRB` with `NEO_RGB`
 
 #### Digital In ####
 
