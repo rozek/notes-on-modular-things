@@ -237,7 +237,7 @@ Both the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040) and t
 
 Here are the **building blocks for the Pimoroni board firmware** (the "software" part is board-independent):
 
-* xxx.ino functions and definitions
+* **`xxx.ino` functions and definitions**
 ```c++
 #define PIN_LED_R 18
 #define PIN_LED_G 19
@@ -252,7 +252,7 @@ Here are the **building blocks for the Pimoroni board firmware** (the "software"
   }
   OSAP_Port_Named setRGB("setRGB",_setRGB);
 ```
-* xxx.ino setup
+* **`xxx.ino` setup**
 ```c++
     analogWriteResolution(16);             // according to RP2040 specifications
 
@@ -267,11 +267,11 @@ Here are the **building blocks for the Pimoroni board firmware** (the "software"
 
 And here are the **building blocks for the Waveshare board firmware** (the "software" part is board-independent):
 
-* xxx.ino functions and definitions
+* **`xxx.ino` includes**
 ```c++
 #include <Adafruit_NeoPixel.h>
 ```
-* xxx.ino functions and definitions
+* **`xxx.ino` functions and definitions**
 ```c++
 #define builtin_LED_Pin 16
 
@@ -289,7 +289,7 @@ And here are the **building blocks for the Waveshare board firmware** (the "soft
   }
   OSAP_Port_Named setRGB("setRGB",_setRGB);
 ```
-* xxx.ino setup
+* **`xxx.ino` setup**
 ```c++
     builtin_LED.begin();
     builtin_LED.setPixelColor(0,builtin_LED.Color(0,16,0));
@@ -299,7 +299,7 @@ And here are the **building blocks for the Waveshare board firmware** (the "soft
 
 Here is the **board-independent software part**:
 
-* xxx.ts methods
+* **`xxx.ts` methods**
 ```typescript
   async setRGB (R:number, G:number, B:number):Promise<void> {
     const Datagram = new Uint8Array([
@@ -310,7 +310,7 @@ Here is the **board-independent software part**:
     await this.send('setRGB',Datagram)
   }
 ```
-* xxx.ts API documentation
+* **`xxx.ts` API documentation**
 ```typescript
   {
     name: 'setRGB',
