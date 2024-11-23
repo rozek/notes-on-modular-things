@@ -111,7 +111,7 @@ You should now be able to access your thing using JavaScript from within the IDE
 
 ## How to develop your own "Thing" ##
 
-Thanks to the nature of things, it turns out to be pretty simple to develop custom "things" - you do not even have to know Arduino and its C dialect. In many case it is sufficient to use the templates shown below and fill in the "Building Blocks" for the desired functionality - that's it. The hardware may then be built using a breadboard.
+Thanks to the nature of things, it turns out to be pretty simple to develop custom "things" - you do not even have to really know the Arduino environment and its C dialect. In many cases it is sufficient to use the templates shown below and fill in the "Building Blocks" for the desired functionality - that's it. The hardware may then be built using a breadboard.
 
 ### Templates ###
 
