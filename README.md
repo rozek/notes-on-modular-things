@@ -26,8 +26,88 @@ The "**firmware**" of a thing is an Arduino sketch which implements a thing's fu
 
 ## Hardware ##
 
-In this work, the base of every module is a breakout board for the [Raspberry Pi Pico RP2040](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#rp2040) microcontroller - usually a [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) (because that seems to be the cheapest one - at least, here in Germany). However, many other modules (e.g., the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040)) may be used as well - sometimes after slightly modifying the Arduino sketch that is required for the "firmware" of a "thing"
+In this work, the base of every module is a breakout board for the [Raspberry Pi Pico RP2040](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#rp2040) microcontroller - usually a [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero) (because that seems to be the cheapest one - at least, here in Germany). However, many other modules (e.g., the [Pimoroni Tiny2040](https://shop.pimoroni.com/products/tiny-2040)) may be used as well - sometimes after slightly modifying the Arduino sketch that is required for the "firmware" of a "thing".
 
+## Installation and Usage ##
+
+Let's say, you have a chosen a "thing" that you plan to build - or you want to develop a new one. Assuming, that this thing is called "xxx" (the name should qualify as a valid Javascript identifier), then you will find below the instructions for installation and use of that thing (skip whatever does not seem applicable and change `xxx` to the actual name of your thing):
+
+#### Firmware Preparation ####
+
+1. Install Arduino IDE (see https://www.arduino.cc/en/software)
+2. Install the board "**Raspberry Pi Pico/RP2040/RP2350** by Earle F. Philhower, III" using the Arduino "Boards Manager"
+3. Install "**osap** by Jake Robert Read" using the Arduino "Library Manager"
+
+#### Firmware Installation ####
+
+1. Create a new sketch and rename it to `xxx`
+2. Copy the firmware for your thing from the internet into the sketch editor (or develop your own)
+3. Connect the RP2040 board via USB and select it from the board dropdown in the Arduino IDE
+4. Compile and upload the sketch
+
+#### Software Preparation ####
+
+1. Install Node.js (see https://nodejs.org/en/)
+2. Download "modular-things" as a [ZIP archive](https://github.com/modular-things/modular-things/archive/refs/heads/main.zip), unpack it, and move it to a location of your choice
+3. Open a terminal window and navigate to the extracted directory
+4. run `npm install`
+
+#### Software Installation ####
+
+1. Open the terminal window and navigate to the extracted directory
+2. copy the "xxx" directory from this repository and its contents into the `./things` folder. In the end, `./things/xxx` should have the following structure:
+```
+./things/xxx/
+  circuit/
+    images/
+      layout.png
+      schematic.png
+      preview.png
+  firmware/
+    xxx/
+      xxx.ino
+  software/
+    xxx.ts
+```
+3. Insert the following text into file `./things/_things.json` after the first line (i.e., after the opening bracket):
+```json
+  {
+    "author":  "your name",
+    "name":    "xxx",
+    "software":"software/xxx.ts",
+    "firmware":"firmware/xxx/xxx.ino",
+    "images": [
+      { 
+        "name": "layout", 
+        "src": "circuit/images/layout.png"
+      },
+      { 
+        "name": "schematic", 
+        "src": "circuit/images/schematic.png"
+      },
+      { 
+        "name": "preview", 
+        "src": "circuit/images/preview.png"
+      }
+    ]
+  },
+```
+4. Insert the following lines into file `./index.ts`
+  * `import xxx from "./xxx/software/xxx";`<br>
+    e.g., as the last import statement
+  * `xxx,`<br>
+    e.g., as the last line in the `export default {` block
+5. (Re)start the server<br>
+    `npm run dev`
+
+#### Thing Usage ####
+
+1. Connect the properly prepared RP2040 board to your computer via USB.
+2. Open the (**custom**) web environment: [http://localhost:3000](http://localhost:3000)
+3. Click on "pair new thing" and select the "thing" you connected before<br>(the "List of Things" should now display a description of its interface).
+4. Click on "rename" and change the name of your thing to something you want to use in your application (the new name must be a valid JavaScript variable identifier).
+
+You should now be able to access your thing using JavaScript from within the IDE.
 
 
 
