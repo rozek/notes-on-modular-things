@@ -364,7 +364,7 @@ Here are the **building blocks for the firmware**:
     }
 ```
 
-And here is the *software part**:
+And here is the **software part**:
 
 * **`xxx.ts` methods**
 ```typescript
@@ -401,6 +401,67 @@ Assuming, that your (paired) "thing" is called `Thing`, the following code can b
 ```
 
 ### Digital Outputs ###
+
+This section describes the implementation of digital outputs: setting their JavaScript representation to `true` will set the level of an output pin to HIGH and `false` will set it to LOW. The example uses pins 4...7 for that purpose, but you may easily change that if you modify the code accordingly.
+
+Here are the **building blocks for the firmware**:
+
+* **`xxx.ino` functions and definitions**
+```c++
+/**** Digital Output ****/
+
+  int DigitalOut[4] = { 4,5,6,7 };
+
+  void _setDigital (uint8_t* Data, size_t Length) {
+    if (Length > 0) {
+      int Port = Data[0];
+      if ((Port >= 0) && (Port <= 3)) {
+        digitalWrite(DigitalOut[Port], (Length == 1) || (Data[1] == 0) ? LOW : HIGH);
+      }
+    }
+  }
+  OSAP_Port_Named setDigital("setDigital",_setDigital);
+```
+* **`xxx.ino` setup**
+```c++
+    for (int Port = 0; Port < 4; Port++) {
+      pinMode(DigitalOut[Port],OUTPUT);
+    }
+```
+
+And here is the **software part**:
+
+* **`xxx.ts` methods**
+```typescript
+/**** Digital Output ****/
+
+  async setDigital (Port:number, Value:boolean):Promise<void> {
+    Port = Math.floor(Port)
+    if ((Port < 0) || (Port > 3)) throw new Error(
+      'multi-io thing: invalid digital output port ' + Port
+    )
+
+    const Datagram = new Uint8Array([Port,Value ? 255 : 0])
+    await this.send('setDigital',Datagram)
+  }
+```
+* **`xxx.ts` API documentation**
+```typescript
+  {
+    name: 'setDigital',
+    args: [ 'port: 0 to 3', 'value: true or false' ]
+  },
+```
+
+**Usage**:
+
+Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to set the state of a given digital output (the example uses the output to drive a LED. The resistor R should therefore depend on the type of LED you plan to use - and keep in mind that the output voltage of a digital pin is 3.3V):
+
+![Wiring example for a digital output](assets/DigitalOutput.png)
+
+```javascript
+  await Thing.setDigital(0,true) // switches output #0 on
+```
 
 (t.b.w)
 
