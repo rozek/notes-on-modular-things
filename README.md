@@ -324,7 +324,62 @@ Here is the **board-independent software part**:
 
 ### Digital Inputs ###
 
-(t.b.w)
+This section describes the implementation of digital inputs which return `true` or `false` on the JavaScript side. The example uses pins 0...3 for that purpose, but you may easily change that if you modify the code accordingly.
+
+> in order to produce stable values, the input pins of the RP2040 will be configured with a pull-up resistor. By default (i.e., when left unconnected), such a pin will be HIGH and has to be connected to GND in order to become LOW - this behaviour is called "active-low" and your electronics should take care of that. In order not to confuse JavaScript users, the "firmware" will invert the input states and simulate digital inputs which are "active-high", where `false` means "off" and `true` means "on"
+
+Here are the **building blocks for the firmware**:
+
+* **`xxx.ino` functions and definitions**
+```c++
+/**** Digital Input ("active low" because of pull-up resistor) ****/
+
+  int DigitalIn[4] = { 0,1,2,3 };
+
+  size_t _getDigital (uint8_t* Data, size_t Length, uint8_t* Response) {
+    if (Length > 0) {
+      int Port = Data[0];
+      if ((Port >= 0) && (Port <= 3)) {
+        int Value = digitalRead(DigitalIn[Port]);
+          Response[0] = (Value == LOW ? 1 : 0);                      // no typo!
+        return 1;     // when connected to GND, _getDigital sends 1, otherwise 0
+      }
+    }
+    return 0;
+  }
+  OSAP_Port_Named getDigital("getDigital",_getDigital);
+```
+* **`xxx.ino` setup**
+```c++
+    for (int Port = 0; Port < 4; Port++) {
+      pinMode (DigitalIn[Port],INPUT_PULLUP);    // for a well-defined potential
+    }
+```
+
+And here is the *software part**:
+
+* **`xxx.ts` methods**
+```typescript
+/**** Digital Input ****/
+
+  async getDigital (Port:number):Promise<boolean> {
+    Port = Math.floor(Port)
+    if ((Port < 0) || (Port > 3)) throw new Error(
+      'multi-io thing: invalid digital input port ' + Port
+    )
+
+    const Data = await this.send('getDigital',new Uint8Array([Port]))
+    return (Data[0] > 0)
+  }
+```
+* **`xxx.ts` API documentation**
+```typescript
+  {
+    name:  'getDigital',
+    args:  [ 'port: 0 to 3' ],
+    return:'true or false'
+  },
+```
 
 ### Digital Outputs ###
 
