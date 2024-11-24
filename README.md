@@ -322,6 +322,14 @@ Here is the **board-independent software part**:
   },
 ```
 
+**Usage**:
+
+Assuming, that your (paired) "thing" is called `Thing`, using the built-in RGB LED is simple:
+
+```javascript
+  await Thing.setRGB(0,0.1,0) // let's the LED glow green
+```
+
 ### Digital Inputs ###
 
 This section describes the implementation of digital inputs which return `true` or `false` on the JavaScript side. The example uses pins 0...3 for that purpose, but you may easily change that if you modify the code accordingly.
