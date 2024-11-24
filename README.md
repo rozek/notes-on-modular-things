@@ -463,8 +463,6 @@ Assuming, that your (paired) "thing" is called `Thing`, the following code can b
   await Thing.setDigital(0,true) // switches output #0 on
 ```
 
-(t.b.w)
-
 ### Analog Inputs ###
 
 (t.b.w)
