@@ -326,7 +326,7 @@ Here is the **board-independent software part**:
 
 This section describes the implementation of digital inputs which return `true` or `false` on the JavaScript side. The example uses pins 0...3 for that purpose, but you may easily change that if you modify the code accordingly.
 
-> in order to produce stable values, the input pins of the RP2040 will be configured with a pull-up resistor. By default (i.e., when left unconnected), such a pin will be HIGH and has to be connected to GND in order to become LOW - this behaviour is called "active-low" and your electronics should take care of that. In order not to confuse JavaScript users, the "firmware" will invert the input states and simulate digital inputs which are "active-high", where `false` means "off" and `true` means "on"
+> in order to produce stable values, the input pins of the RP2040 will be configured with a pull-up resistor. By default (i.e., when left unconnected), such a pin will be HIGH and has to be connected to GND in order to become LOW - this behaviour is called "active-low" and your electronics should take care of that. However, in order not to confuse JavaScript users, the "firmware" will invert the input states and simulate digital inputs which are "active-high", where `false` means "off" and `true` means "on"
 
 Here are the **building blocks for the firmware**:
 
