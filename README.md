@@ -332,7 +332,7 @@ Assuming, that your (paired) "thing" is called `Thing`, using the built-in RGB L
 
 ### Digital Inputs ###
 
-This section describes the implementation of digital inputs which return `true` or `false` on the JavaScript side. The example uses pins 0...3 for that purpose, but you may easily change that if you modify the code accordingly.
+This section describes the implementation of digital inputs which return `true` or `false` on the JavaScript side. When using some electronics to drive an input pin, **keep in mind that the RP2040 accepts input voltages up to 3.3V only!** The example uses pins 0...3 for that purpose, but you may easily change that if you modify the code accordingly.
 
 > in order to produce stable values, the input pins of the RP2040 will be configured with a pull-up resistor. By default (i.e., when left unconnected), such a pin will be HIGH and has to be connected to GND in order to become LOW - this behaviour is called "active-low" and your electronics should take care of that. However, in order not to confuse JavaScript users, the "firmware" will invert the input states and simulate digital inputs which are "active-high", where `false` means "off" and `true` means "on"
 
@@ -455,7 +455,7 @@ And here is the **software counterpart**:
 
 **Usage**:
 
-Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to set the state of a given digital output (the example uses the output to drive a LED. The value of resistor R therefore depends on the type of LED you plan to use - and keep in mind that the output voltage of a digital pin is 3.3V):
+Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to set the state of a given digital output (the example uses the output to drive a LED. The value of resistor R therefore depends on the type of LED you plan to use - and **keep in mind that the output voltage of a digital pin is 3.3V**):
 
 ![Wiring example for a digital output](assets/DigitalOutput.png)
 
