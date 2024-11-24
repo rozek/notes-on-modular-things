@@ -393,6 +393,8 @@ And here is the *software part**:
 
 Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to read the state of a given digital input:
 
+![Wiring example for a digital input](assets/DigitalInput.png)
+
 ```javascript
   const State = await Thing.getDigital(0) // reads from input #0
   console.log(State == false ? 'off' : 'on')
