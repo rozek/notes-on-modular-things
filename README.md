@@ -365,7 +365,7 @@ And here is the *software part**:
   async getDigital (Port:number):Promise<boolean> {
     Port = Math.floor(Port)
     if ((Port < 0) || (Port > 3)) throw new Error(
-      'multi-io thing: invalid digital input port ' + Port
+      'invalid digital input port ' + Port
     )
 
     const Data = await this.send('getDigital',new Uint8Array([Port]))
