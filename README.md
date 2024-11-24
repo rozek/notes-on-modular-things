@@ -429,7 +429,7 @@ Here are the **building blocks for the firmware**:
     }
 ```
 
-And here is the **software part**:
+And here is the **software counterpart**:
 
 * **`xxx.ts` methods**
 ```typescript
@@ -455,7 +455,7 @@ And here is the **software part**:
 
 **Usage**:
 
-Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to set the state of a given digital output (the example uses the output to drive a LED. The resistor R should therefore depend on the type of LED you plan to use - and keep in mind that the output voltage of a digital pin is 3.3V):
+Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to set the state of a given digital output (the example uses the output to drive a LED. The value of resistor R therefore depends on the type of LED you plan to use - and keep in mind that the output voltage of a digital pin is 3.3V):
 
 ![Wiring example for a digital output](assets/DigitalOutput.png)
 
