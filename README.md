@@ -438,7 +438,7 @@ And here is the **software counterpart**:
   async setDigital (Port:number, Value:boolean):Promise<void> {
     Port = Math.floor(Port)
     if ((Port < 0) || (Port > 3)) throw new Error(
-      'multi-io thing: invalid digital output port ' + Port
+      'invalid digital output port ' + Port
     )
 
     const Datagram = new Uint8Array([Port,Value ? 255 : 0])
@@ -507,7 +507,7 @@ And here is the **software counterpart**:
   async getAnalog (Port:number):Promise<number> {
     Port = Math.floor(Port)
     if ((Port < 0) || (Port > 1)) throw new Error(
-      'multi-io thing: invalid analog input port ' + Port
+      'invalid analog input port ' + Port
     )
 
     const Data = await this.send('getAnalog',new Uint8Array([Port]))
