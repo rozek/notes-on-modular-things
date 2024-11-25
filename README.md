@@ -536,7 +536,70 @@ Assuming, that your (paired) "thing" is called `Thing`, the following code can b
 
 ### Analog Outputs ###
 
-(t.b.w)
+This section describes the implementation of (pseudo) analog outputs: setting their JavaScript representation to a value ranging from 0 to 1 will produce a PWM signal with a duty cycle of that value. The example uses pins 28 and 29 for that purpose, but you may easily change that if you modify the code accordingly.
+
+Here are the **building blocks for the firmware**:
+
+* **`xxx.ino` functions and definitions**
+```c++
+/**** Analog Output ****/
+
+  int AnalogOut[2] = { 28,29 };
+
+  void _setAnalog (uint8_t* Data, size_t Length) {
+    if (Length > 0) {
+      int Port = Data[0];
+      if ((Port >= 0) && (Port <= 1)) {
+        analogWrite(AnalogOut[Port], (Length < 2 ? 0 : Data[1] + Data[2]*255));
+      }
+    }
+  }
+  OSAP_Port_Named setAnalog("setAnalog",_setAnalog);
+```
+* **`xxx.ino` setup**
+```c++
+    analogWriteResolution(16);             // according to RP2040 specifications
+    for (int Port = 0; Port < 4; Port++) {
+      pinMode(AnalogOut[Port],OUTPUT);
+      analogWrite(AnalogOut[Port],0);
+    }
+```
+
+And here is the **software counterpart**:
+
+* **`xxx.ts` methods**
+```typescript
+/**** Analog Output ****/
+
+  async setAnalog (Port:number, Value:number):Promise<void> {
+    Port = Math.floor(Port)
+    if ((Port < 0) || (Port > 1)) throw new Error(
+      'multi-io thing: invalid analog output port ' + Port
+    )
+
+    Value = Math.floor(4096 * Math.max(0,Math.min(Value,1)))
+    await this.send('setAnalog',new Uint8Array([
+      Port, Value & 0xFF, Value >> 8 & 0xFF
+    ]))
+  }
+```
+* **`xxx.ts` API documentation**
+```typescript
+  {
+    name:  'setAnalog',
+    args:  [ 'port: 0 to 1', 'value: 0 to 1' ]
+  },
+```
+
+**Usage**:
+
+Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to set the duty cycle of a given analog output (the example uses the output to drive a LED. The value of resistor R therefore depends on the type of LED you plan to use - and **keep in mind that the output voltage of a digital pin is 3.3V**):
+
+![Wiring example for an analog output](assets/AnalogOutput.png)
+
+```javascript
+  Thing.setAnalog(0,0.1)
+```
 
 ### RC Servo Control ###
 
