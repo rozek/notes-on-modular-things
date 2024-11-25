@@ -465,7 +465,74 @@ Assuming, that your (paired) "thing" is called `Thing`, the following code can b
 
 ### Analog Inputs ###
 
-(t.b.w)
+This section describes the implementation of analog inputs which return a value ranging from 0 to 1 on the JavaScript side (independent of the actual ADC resolution, which is set to the maximum possible). When using some electronics to drive an input pin, **keep in mind that the RP2040 accepts input voltages up to 3.3V only!** The example uses pins 26 and 27 for that purpose, but you may easily change that if you modify the code accordingly.
+
+Here are the **building blocks for the firmware**:
+
+* **`xxx.ino` functions and definitions**
+```c++
+/**** Analog Input ****/
+
+  int AnalogIn[2] = { 26,27 };
+
+  size_t _getAnalog (uint8_t* Data, size_t Length, uint8_t* Response) {
+    if (Length > 0) {
+      int Port = Data[0];
+      if ((Port >= 0) && (Port <= 1)) {
+        uint16_t Value = analogRead(AnalogIn[Port]);
+          Response[0] = Value & 0xFF;
+          Response[1] = Value >> 8 & 0xFF;
+        return 2;
+      }
+    }
+    return 0;
+  }
+  OSAP_Port_Named getAnalog("getAnalog",_getAnalog);
+```
+* **`xxx.ino` setup**
+```c++
+    analogReadResolution(12);              // according to RP2040 specifications
+
+    for (int Port = 0; Port < 2; Port++) {
+      analogRead(AnalogIn[Port]);
+    }
+```
+
+And here is the **software counterpart**:
+
+* **`xxx.ts` methods**
+```typescript
+/**** Analog Input ****/
+
+  async getAnalog (Port:number):Promise<number> {
+    Port = Math.floor(Port)
+    if ((Port < 0) || (Port > 1)) throw new Error(
+      'multi-io thing: invalid analog input port ' + Port
+    )
+
+    const Data = await this.send('getAnalog',new Uint8Array([Port]))
+    return (Data[0] + Data[1]*255) / 4096
+  }
+```
+* **`xxx.ts` API documentation**
+```typescript
+  {
+    name:  'getAnalog',
+    args:  [ 'port: 0 to 1' ],
+    return:'0 to 1'
+  },
+```
+
+**Usage**:
+
+Assuming, that your (paired) "thing" is called `Thing`, the following code can be used to read the value of a given analog input:
+
+![Wiring example for an analog input](assets/AnalogInput.png)
+
+```javascript
+  const Value = await Thing.getAnalog(0) // reads from input #0
+  console.log(Value)
+```
 
 ### Analog Outputs ###
 
