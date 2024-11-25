@@ -603,9 +603,13 @@ Assuming, that your (paired) "thing" is called `Thing`, the following code can b
 
 ### RC Servo Control ###
 
+This sections describes a solution to drive up to 8 (or more) RC servos.
+
 (t.b.w)
 
 ### Continuous Rotation RC Servo Control ###
+
+This sections describes a solution to drive up to 8 (or more) "continuous rotation" RC servos (sometimes also called "360° servocs").
 
 (t.b.w)
 
