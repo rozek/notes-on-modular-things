@@ -609,13 +609,13 @@ This sections describes a solution to drive up to 8 (or more) RC servos. The exa
 
 ### Continuous Rotation RC Servo Control ###
 
-This sections describes a solution to drive up to 8 (or more) "continuous rotation" RC servos (sometimes also called "360° servocs").on the JavaScript side, you set a servo output pin to a value in the range -1...+1, where the sign determines the direction and the abolute value the speed with which the servo rotates.
+This sections describes a solution to drive up to 8 (or more) "continuous rotation" RC servos (sometimes also called "360° servocs"). On the JavaScript side, you set a servo output pin to a value in the range -1...+1, where the sign determines the direction and the abolute value the speed with which the servo rotates. The example uses pins 0...7 for that purpose and has been configured for the timing of typical micro servos of type SG90, but you may easily change that if you modify the code accordingly.
 
 (t.b.w)
 
 ### NeoPixel (WS2812) Control ###
 
-This sections describes a solution to drive a string of WS2812 "NeoPixel" RGB LEDs
+This sections describes a solution to drive a string of WS2812 "NeoPixel" RGB LEDs. The example uses pin 7 for that purpose and drives a single LED string only, but you may easily change that if you modify the code accordingly.
 
 > **Keep in mind**: every single RGB LED consumes up to 3x20mA - as a consequence, **strings with more than 10 RGB LEDs should never be powered from USB but always from an external power supply**
 
