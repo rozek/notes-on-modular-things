@@ -586,8 +586,8 @@ And here is the **software counterpart**:
 * **`xxx.ts` API documentation**
 ```typescript
   {
-    name:  'setAnalog',
-    args:  [ 'port: 0 to 1', 'value: 0 to 1' ]
+    name: 'setAnalog',
+    args: [ 'port: 0 to 1', 'value: 0 to 1' ]
   },
 ```
 
